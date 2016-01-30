@@ -1,5 +1,9 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 
+* {
+	letter-spacing: 0.1em;
+	line-height: 1.5;
+}
 #main_img {
 	width: 100%;
 	position: relative;
@@ -13,9 +17,15 @@
 #main_img p {
 	position: absolute;
 	top: 50%;
-	text-shadow: 1em 1em 1.5em white;
+	text-shadow: 0em 0em 1em gray;
 	width: 100%;
-	letter-spacing: 0.1em;
+/* 	letter-spacing: 0.1em; */
+	font-size: 1.5em;
+	color: white;
+	
+}
+#content_box {
+	margin-top: 83px;
 }
 
 h1 {
@@ -26,8 +36,9 @@ h1 {
 	height: 73px;
 	text-indent: -9999px;
 }
-h2, h3, caption {
+h2, h3, h4, caption {
 	color: #02d19c;
+	font-size: 1.5em;
 }
 header {
 	width: 100%;
@@ -48,6 +59,12 @@ header li a:hover {
 	border-bottom-color: deeppink;
 	border-bottom-width: 2px;
 	border-bottom-style: solid;
+}
+
+footer {
+	border-top: 1px solid #efefef;
+	padding: 1em 0;
+	
 }
 #cycle ul {
 	margin: 0 auto;
