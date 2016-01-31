@@ -64,6 +64,7 @@ header li a:hover, header li a.active_page {
 }
 
 footer {
+	margin-top: 1em;
 	border-top: 1px solid #efefef;
 	padding: 1em 0;
 	

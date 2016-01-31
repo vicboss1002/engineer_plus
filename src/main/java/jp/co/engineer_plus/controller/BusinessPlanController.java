@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class BusinessPlanController {
-//	@RequestMapping("/business_plan")
-//	public String businessPlan() {
-//		return null;
-//	}
+	@RequestMapping("/business_plan")
+	public String businessPlan() {
+		return "business_plan";
+	}
 }
