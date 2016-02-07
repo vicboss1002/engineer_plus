@@ -1,8 +1,11 @@
 package jp.co.engineer_plus.service.impl;
 
-import jp.co.engineer_plus.repositories.UserRepository;
+import org.springframework.stereotype.Service;
+
+import jp.co.engineer_plus.repositories.EqUserRepository;
 import jp.co.engineer_plus.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
-	private UserRepository repository;
+	private EqUserRepository repository;
 }

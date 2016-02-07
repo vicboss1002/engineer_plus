@@ -12,14 +12,15 @@ import javax.persistence.Table;
  * engineer_plus_userの実体
  */
 @Entity
-@Table(name="engineer_plus_user")
-public class EngineerPlusUser implements Serializable {
+@Table(name="ep_user")
+public class EpUser implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
 	private Long sid;
 	private String id;
 	private String password;

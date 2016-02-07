@@ -13,8 +13,8 @@ import javax.persistence.Table;
  * business_planの実体
  */
 @Entity
-@Table(name="business_plan")
-public class BusinessPlan implements Serializable {
+@Table(name="ep_business_plan")
+public class EpBusinessPlan implements Serializable {
 	/**
 	 * 
 	 */
@@ -33,7 +33,7 @@ public class BusinessPlan implements Serializable {
 	private Integer createdUserId;
 	@Column(name="updated_user_id")
 	private Integer updatedUserId;
-	public BusinessPlan() {
+	public EpBusinessPlan() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -2,8 +2,8 @@ package jp.co.engineer_plus.controller;
 
 import javax.servlet.Filter;
 
-import jp.co.engineer_plus.entity.EngineerPlusUser;
-import jp.co.engineer_plus.repositories.UserRepository;
+import jp.co.engineer_plus.entity.EpUser;
+import jp.co.engineer_plus.repositories.EqUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class MainController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private EqUserRepository userRepository;
 	
 	/**
 	 * トップページへ遷移
@@ -36,7 +36,7 @@ public class MainController {
 	 */
 	@RequestMapping("/test")
 	public String test(Model model) {
-		Iterable<EngineerPlusUser> list = userRepository.findAll();
+		Iterable<EpUser> list = userRepository.findAll();
 		model.addAttribute("results", list);
 		return "test";
 	}
