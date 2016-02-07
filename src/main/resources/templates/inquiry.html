@@ -26,31 +26,39 @@
 		</div>
 	</header>
 	<div id="content_box" class="clearfix">
+		<section id="result_message">
+			<ul class="list-unstyled">
+				<li th:each="result :${resultMap}">
+					<p class="text-info bg-success" th:if="${result.getValue()}" th:text="${result.getKey()}"></p>
+					<p class="text-danger bg-danger" th:if="${!result.getValue()}" th:text="${result.getKey()}"></p>
+				</li>
+			</ul>
+		</section>
 		<section class="clearfix">
 			<h2>お問い合わせフォーム</h2>
-			<form id="inquiry_form" name="inquiry_form" class="form-horizontal" action="" method="POST">
+			<form id="inquiry_form" name="inquiry_form" class="form-horizontal" action="./inquiry" method="POST" th:object="${inquiryForm}">
 				<div class="form-group">
-					<label for="user_name" class="control-label col-sm-2">お名前</label>
+					<label for="name" class="control-label col-sm-2">お名前</label>
 					<div class="col-sm-10">
-						<input type="text" id="user_name" name="user_name" class="form-control" placeholder="お名前を入力してください..." required="required" />
+						<input type="text" id="user_name" name="user_name" class="form-control" placeholder="お名前を入力してください..." required="required" th:field="*{name}" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="mail_address" class="control-label col-sm-2">メールアドレス</label>
 					<div class="col-sm-10">
-						<input type="email" id="mail_address" name="mail_address" class="form-control col-sm-10" placeholder="メールアドレスを入力してください..." required="required" />				
+						<input type="email" id="mail_address" name="mail_address" class="form-control col-sm-10" placeholder="メールアドレスを入力してください..." required="required" th:field="*{mailAddress}" />				
 					</div>
 				</div>
 				<div class="form-group">	
 					<label for="inquiry_title" class="control-label col-sm-2">件名</label>
 					<div class="col-sm-10">
-						<input type="text" id="inquiry_title" name="inquiry_title" class="form-control col-sm-10" placeholder="件名を入力してください..." />						
+						<input type="text" id="title" name="inquiry_title" class="form-control col-sm-10" placeholder="件名を入力してください..." th:field="*{title}" />						
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inquiry_content" class="control-label col-sm-2">お問い合わせ内容</label>
 					<div class="col-sm-10">
-						<textarea id="inquiry_content" name="inquiry_content" rows="10" class="form-control" placeholder="お問い合わせ内容を入力してください..." required="required"></textarea>					
+						<textarea id="content" name="inquiry_content" rows="10" class="form-control" placeholder="お問い合わせ内容を入力してください..." required="required" th:field="*{content}"></textarea>					
 					</div>
 				</div>												
 				<div class="form-group">

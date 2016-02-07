@@ -1,9 +1,12 @@
 package jp.co.engineer_plus.service.impl;
 
-import jp.co.engineer_plus.repositories.BusinessPlanRepository;
+import org.springframework.stereotype.Service;
+
+import jp.co.engineer_plus.repositories.EqBusinessPlanRepository;
 import jp.co.engineer_plus.service.BusinesPlanService;
 
+@Service
 public class BusinesPlanServiceImpl implements BusinesPlanService {
-	private BusinessPlanRepository repository;
+	private EqBusinessPlanRepository repository;
 	
 }

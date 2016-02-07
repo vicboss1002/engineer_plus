@@ -1,6 +1,6 @@
 package jp.co.engineer_plus.repositories;
 
-import jp.co.engineer_plus.entity.EngineerPlusUser;
+import jp.co.engineer_plus.entity.EpUser;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * engineer_plus_userのリポジトリ
  */
 @Repository
-public interface UserRepository extends JpaRepository<EngineerPlusUser, Long> {
+public interface EqUserRepository extends JpaRepository<EpUser, Long> {
 
 }

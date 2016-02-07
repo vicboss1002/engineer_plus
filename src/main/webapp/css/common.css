@@ -24,8 +24,12 @@
 	
 }
 #content_box {
-	margin-top: 100px;
+	margin-top: 110px;
 	
+}
+#result_message p{
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 h1 {
