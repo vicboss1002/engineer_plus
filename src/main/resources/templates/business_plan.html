@@ -29,8 +29,8 @@
 		<section id="result_message">
 			<ul class="list-unstyled">
 				<li th:each="result :${resultMap}">
-					<p class="text-info bg-success" th:if="${result.getValue()}" th:text="${result.getKey()}"></p>
-					<p class="text-danger bg-danger" th:if="${!result.getValue()}" th:text="${result.getKey()}"></p>
+					<p class="text-info bg-success" th:if="${result.value}" th:text="${result.key}"></p>
+					<p class="text-danger bg-danger" th:if="${!result.value}" th:text="${result.key}"></p>
 				</li>
 			</ul>
 		</section>
@@ -81,7 +81,7 @@
 							</tr>
 							<tr>
 								<th>投稿日</th>
-								<td th:text="${businessPlan.createdDate}">yyyy/mm/dd hh:mm:ss</td>
+								<td th:text="${#dates.format(businessPlan.createdDate)}">yyyy/mm/dd hh:mm:ss</td>
 							</tr>
 		
 							<tr>
@@ -96,24 +96,19 @@
 				
 				<ul class="list-unstyled center-block">
 					<li id="page_selectors_first">
-						<a href="./business_plan?page=1" title="最初のページ" th:unless="${businessPlans.isFirst()}">|&lt;&lt;</a>
-						<span  title="最初のページ" th:if="${businessPlans.isFirst()}">|&lt;&lt;</span>
+						<a class="btn btn-link" th:class="${businessPlans.isFirst()}? 'btn btn-link disabled': 'btn btn-link'" href="./business_plan?page=1" title="最初のページ">|&lt;&lt;</a>
 					</li>
 					<li id="page_selectors_previous">
-						<a href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.getNumber()})}" th:unless="${businessPlans.isFirst()}">&lt;&lt;</a>
-						<span  title="前のページ" th:if="${businessPlans.isFirst()}">|&lt;</span>
+						<a class="btn btn-link" th:class="${businessPlans.isFirst()}? 'btn btn-link disabled': 'btn btn-link'" href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.number})}">&lt;&lt;</a>
 					</li>
 					<li id="page_selectors_number" th:each="ps :${pageSelectors}">
-						<a href="#" th:text="${ps}" th:href="@{./business_plan(page=${ps})}" th:unless="${ps == (businessPlans.getNumber() + 1)}">その他ページ</a>
-						<span id="page_selectors_current" th:text="${ps}" th:if="${ps == (businessPlans.getNumber() + 1)}" title="現在のページ"></span>
+						<a class="btn btn-link" th:class="${ps==(businessPlans.number+1)? 'btn btn-link disabled btn-lg': 'btn btn-link'}" href="#" th:text="${ps}" th:href="@{./business_plan(page=${ps})}">ページ</a>
 					</li>
 					<li id="page_selectors_next">
-						<a href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.getNumber() + 2})}" th:unless="${businessPlans.isLast()}">&gt;&gt;</a>
-						<span title="次のページ" th:if="${businessPlans.isLast()}">&gt;|</span>
+						<a class="btn btn-link" th:class="${businessPlans.isLast()}? 'btn btn-link disabled': 'btn btn-link'" href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.number + 2})}">&gt;&gt;</a>
 					</li>
 					<li id="page_selectors_last">
-						<a href="#" title="最後のページ" th:href="@{./business_plan(page=${businessPlans.getTotalPages()})}" th:unless="${businessPlans.isLast()}">&gt;&gt;|</a>
-						<span title="最後のページ" th:if="${businessPlans.isLast()}">&gt;&gt;|</span>
+						<a class="btn btn-link" th:class="${businessPlans.isLast()}? 'btn btn-link disabled': 'btn btn-link'" href="#" title="最後のページ" th:href="@{./business_plan(page=${businessPlans.totalPages})}">&gt;&gt;|</a>
 					</li>
 				</ul>
 			</div>
