@@ -96,19 +96,19 @@
 				
 				<ul class="list-unstyled center-block">
 					<li id="page_selectors_first">
-						<a class="btn btn-link" th:class="${businessPlans.isFirst()}? 'btn btn-link disabled': 'btn btn-link'" href="./business_plan?page=1" title="最初のページ">|&lt;&lt;</a>
+						<a class="btn btn-link" th:classappend="${businessPlans.isFirst()}? ' disabled'" href="./business_plan?page=1" title="最初のページ">|&lt;&lt;</a>
 					</li>
 					<li id="page_selectors_previous">
-						<a class="btn btn-link" th:class="${businessPlans.isFirst()}? 'btn btn-link disabled': 'btn btn-link'" href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.number})}">&lt;&lt;</a>
+						<a class="btn btn-link" th:classappend="${businessPlans.isFirst()}? ' disabled'" href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.number})}">&lt;&lt;</a>
 					</li>
 					<li id="page_selectors_number" th:each="ps :${pageSelectors}">
-						<a class="btn btn-link" th:class="${ps==(businessPlans.number+1)? 'btn btn-link disabled btn-lg': 'btn btn-link'}" href="#" th:text="${ps}" th:href="@{./business_plan(page=${ps})}">ページ</a>
+						<a class="btn btn-link" th:classappend="${ps==(businessPlans.number+1)}? ' disabled btn-lg'" href="#" th:text="${ps}" th:href="@{./business_plan(page=${ps})}">ページ</a>
 					</li>
 					<li id="page_selectors_next">
-						<a class="btn btn-link" th:class="${businessPlans.isLast()}? 'btn btn-link disabled': 'btn btn-link'" href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.number + 2})}">&gt;&gt;</a>
+						<a class="btn btn-link" th:classappend="${businessPlans.isLast()}? ' disabled'" href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.number + 2})}">&gt;&gt;</a>
 					</li>
 					<li id="page_selectors_last">
-						<a class="btn btn-link" th:class="${businessPlans.isLast()}? 'btn btn-link disabled': 'btn btn-link'" href="#" title="最後のページ" th:href="@{./business_plan(page=${businessPlans.totalPages})}">&gt;&gt;|</a>
+						<a class="btn btn-link" th:classappend="${businessPlans.isLast()}? ' disabled'" href="#" title="最後のページ" th:href="@{./business_plan(page=${businessPlans.totalPages})}">&gt;&gt;|</a>
 					</li>
 				</ul>
 			</div>
