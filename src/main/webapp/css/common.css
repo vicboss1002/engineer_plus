@@ -100,3 +100,11 @@ footer {
 	display: inline;
 }
 
+.user_info {
+	position: fixed;
+	top: 5%;
+	right: 2%;
+}
+.user_info span {
+	padding-right: 0.5em;
+}

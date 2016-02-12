@@ -40,9 +40,8 @@ public class BusinessPlanController {
 	public String getBusinessPlan(@RequestParam(value="page", defaultValue="1") Integer page, Model model) {
 		Sort sort = new Sort(Sort.Direction.DESC, "updatedDate");
 		PageRequest request = new PageRequest((page < 1? 0: page - 1), PropertiesUtil.getSettingToInt("page_limit", 5), sort);
-		Page<EpBusinessPlan> businessPlans = service.findPage(request);
+		Page<EpBusinessPlan> businessPlans = service.createPage(request);
 		model.addAttribute("businessPlans", businessPlans);
-		model.addAttribute("page", page);
 		model.addAttribute("pageSelectors", createPageSelectors(businessPlans));
 		return "business_plan";
 	}

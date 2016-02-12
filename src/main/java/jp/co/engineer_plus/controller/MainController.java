@@ -29,28 +29,4 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
-	/**
-	 * DB疎通テスト用
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/test")
-	public String test(Model model) {
-		Iterable<EpUser> list = userRepository.findAll();
-		model.addAttribute("results", list);
-		return "test";
-	}
-
-	/**
-	 * 文字エンコーディングのフィルターを返す
-	 * @return フィルター
-	 */
-	@Bean
-	public Filter characterEncodingFilter() {
-		  CharacterEncodingFilter filter = new CharacterEncodingFilter();
-		  filter.setEncoding("UTF-8");
-		  filter.setForceEncoding(true);
-		  return filter;
-	}
-
 }

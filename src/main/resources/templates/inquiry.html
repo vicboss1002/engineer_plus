@@ -24,6 +24,10 @@
 				</ul>
 			</nav>
 		</div>
+		<div class="user_info" th:if="${session.isLogin}">
+			<span th:text="|ログイン中 : ${session.userId}|">ログインユーザ</span>
+			<a href="./logout" class="btn btn-default">ログアウト</a>
+		</div>
 	</header>
 	<div id="content_box" class="clearfix">
 		<section id="result_message">

@@ -12,5 +12,5 @@ import jp.co.engineer_plus.form.BusinessPlanForm;
  *
  */
 public interface BusinesPlanService extends EqService<BusinessPlanForm, EpBusinessPlan> {
-	Page<EpBusinessPlan> findPage(PageRequest request);
+	Page<EpBusinessPlan> createPage(PageRequest request);
 }

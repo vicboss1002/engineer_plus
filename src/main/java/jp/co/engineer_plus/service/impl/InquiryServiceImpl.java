@@ -18,7 +18,7 @@ public class InquiryServiceImpl implements InquiryService {
 	
 	@Override
 	@Transactional
-	public InquiryService execute(InquiryForm form) throws EqServiceException {
+	public void execute(InquiryForm form) throws EqServiceException {
 		try {
 			EqInquiry entity = new EqInquiry();
 			entity.setName(form.getName());
@@ -29,6 +29,5 @@ public class InquiryServiceImpl implements InquiryService {
 		} catch(RuntimeException e) {
 			throw new EqServiceException(e);
 		}
-		return this;
 	}
 }

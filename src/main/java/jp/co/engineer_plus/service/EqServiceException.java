@@ -9,4 +9,7 @@ public class EqServiceException extends Exception {
 	public EqServiceException(Throwable t) {
 		super(t);
 	}
+	public EqServiceException(String message) {
+		super(message);
+	}
 }

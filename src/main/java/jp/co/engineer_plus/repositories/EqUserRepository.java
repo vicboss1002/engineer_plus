@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EqUserRepository extends JpaRepository<EpUser, Long> {
-
+	EpUser findByUserId(String userId);
 }

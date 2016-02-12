@@ -22,7 +22,7 @@ public class BusinesPlanServiceImpl implements BusinesPlanService {
 	
 	@Override
 	@Transactional
-	public BusinesPlanService execute(BusinessPlanForm form) throws EqServiceException {
+	public void execute(BusinessPlanForm form) throws EqServiceException {
 		try {
 			EpBusinessPlan entity = new EpBusinessPlan();
 			entity.setName(form.getName());
@@ -33,10 +33,9 @@ public class BusinesPlanServiceImpl implements BusinesPlanService {
 		} catch(RuntimeException e) {
 			throw new EqServiceException(e);
 		}
-		return this;
 	}
 	@Override
-	public Page<EpBusinessPlan> findPage(PageRequest request) {
+	public Page<EpBusinessPlan> createPage(PageRequest request) {
 		return repository.findAll(request);
 	}
 }

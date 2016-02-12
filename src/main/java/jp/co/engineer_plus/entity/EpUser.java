@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -20,23 +22,29 @@ public class EpUser implements Serializable, EqEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_sid_seq")
+	@SequenceGenerator(name="user_sid_seq", sequenceName="user_sid_seq", allocationSize=1)
 	private Long sid;
-	private String id;
+	@Column(name="user_id")
+	private String userId;
+	@Column
 	private String password;
+	@Column
 	private Integer rank;
-	private String mail;
+	@Column
+	private String mailAddress;
+	@Column
 	public Long getSid() {
 		return sid;
 	}
 	public void setSid(Long sid) {
 		this.sid = sid;
 	}
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getPassword() {
 		return password;
@@ -50,10 +58,10 @@ public class EpUser implements Serializable, EqEntity {
 	public void setRank(Integer rank) {
 		this.rank = rank;
 	}
-	public String getMail() {
-		return mail;
+	public String getMailAddress() {
+		return mailAddress;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
 	}
 }
