@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="ep_user")
-public class EpUser implements Serializable {
+public class EpUser implements Serializable, EqEntity {
 	/**
 	 * 
 	 */

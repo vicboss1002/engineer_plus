@@ -26,25 +26,33 @@
 		</div>
 	</header>
 	<div id="content_box" class="clearfix">
+		<section id="result_message">
+			<ul class="list-unstyled">
+				<li th:each="result :${resultMap}">
+					<p class="text-info bg-success" th:if="${result.getValue()}" th:text="${result.getKey()}"></p>
+					<p class="text-danger bg-danger" th:if="${!result.getValue()}" th:text="${result.getKey()}"></p>
+				</li>
+			</ul>
+		</section>
 		<section id="create_business_plan_box">
 			<h2>事業プランを投稿</h2>
-			<form id="business_plan_form" name="business_plan_form" class="form-horizontal" action="" method="POST">
+			<form id="business_plan_form" name="business_plan_form" class="form-horizontal" action="./business_plan" method="POST" th:object="${businessPlanForm}">
 				<div class="form-group">
 					<label for="u" class="control-label col-sm-2">名前</label>
 					<div class="col-sm-10">
-						<input type="text" id="user_name" name="user_name" class="form-control" placeholder="名前を入力してください..." required="required" />
+						<input type="text" id="user_name" name="user_name" class="form-control" placeholder="名前を入力してください..." required="required" th:field="*{name}" />
 					</div>
 				</div>
 				<div class="form-group">	
 					<label for="business_plan_title" class="control-label col-sm-2">タイトル</label>
 					<div class="col-sm-10">
-						<input type="text" id="business_plan_title" name="business_plan_title" class="form-control col-sm-10" placeholder="タイトルを入力してください..." required="required" />						
+						<input type="text" id="business_plan_title" name="business_plan_title" class="form-control col-sm-10" placeholder="タイトルを入力してください..." required="required" th:field="*{title}" />						
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="business_plan_content" class="control-label col-sm-2">事業プラン内容</label>
 					<div class="col-sm-10">
-						<textarea id="business_plan_content" name="business_plan_content" rows="5" class="form-control" placeholder="事業プランを入力してください..." required="required"></textarea>					
+						<textarea id="business_plan_content" name="business_plan_content" rows="5" class="form-control" placeholder="事業プランを入力してください..." required="required" th:field="*{content}"></textarea>					
 					</div>
 				</div>
 				<div class="form-group">
@@ -59,27 +67,58 @@
 		</section><!-- #create_business_plan_box -->
 		<section id="read_business_plan_box">
 			<h2>事業プラン一覧</h2>
-			<article>
-				<table class="table">
-					<tr>
-						<th>名前</th>
-						<td>テストユーザ</td>
-					</tr>
-					<tr>
-						<th>タイトル</th>
-						<td>テストタイトル</td>
-					</tr>			
-					<tr>
-						<th style="display:none;">事業プラン内容</th>
-						<td colspan="2">テスト事業プラン内容</td>
-					</tr>		
-				</table>
-			</article>
+			<ul class="list-unstyled">
+				<li th:each="businessPlan :${businessPlans}">
+					<article>
+						<table class="table table-hover">
+							<tr>
+								<th>名前</th>
+								<td th:text="${businessPlan.name}">テストユーザ</td>
+								<th>投稿日</th>
+								<td th:text="${businessPlan.createdDate}">yyyy/mm/dd hh:mm:ss</td>
+							</tr>
+							<tr>
+								<th colspan="2">タイトル</th>
+								<td colspan="2" th:text="${businessPlan.title}">テストタイトル</td>
+							</tr>			
+							<tr>
+								<th style="display:none;">事業プラン内容</th>
+								<td class="text-left" colspan="4" th:text="${businessPlan.content}">テスト事業プラン内容</td>
+							</tr>		
+						</table>
+					</article>
+				</li>
+			</ul>
+			<div id="page_selectors">
+				
+				<ul class="list-unstyled center-block">
+					<li class="page_selectors_first">
+						<a href="./business_plan?page=1" title="最初のページ" th:unless="${businessPlans.isFirst()}">|&lt;&lt;</a>
+						<span  title="最初のページ" th:if="${businessPlans.isFirst()}">|&lt;&lt;</span>
+					</li>
+					<li class="page_selectors_previous">
+						<a href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.getNumber()})}" th:unless="${businessPlans.isFirst()}">|&lt;</a>
+						<span  title="前のページ" th:if="${businessPlans.isFirst()}">|&lt;</span>
+					</li>
+					<li class="page_selectors_number" th:each="ps :${pageSelectors}">
+						<a href="#" th:text="${ps}" th:href="@{./business_plan(page=${ps})}" th:unless="${ps == (businessPlans.getNumber() + 1)}">その他ページ</a>
+						<span class="page_selectors_current" th:text="${ps}" th:if="${ps == (businessPlans.getNumber() + 1)}" title="現在のページ"></span>
+					</li>
+					<li class="page_selectors_next">
+						<a href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.getNumber() + 2})}" th:unless="${businessPlans.isLast()}">&gt;|</a>
+						<span title="次のページ" th:if="${businessPlans.isLast()}">&gt;|</span>
+					</li>
+					<li class="page_selectors_last">
+						<a href="#" title="最後のページ" th:href="@{./business_plan(page=${businessPlans.getTotalPages()})}" th:unless="${businessPlans.isLast()}">&gt;&gt;|</a>
+						<span title="最後のページ" th:if="${businessPlans.isLast()}">&gt;&gt;|</span>
+					</li>
+				</ul>
+			</div>
 		</section><!-- #red_bisiness_plan_box -->
 		
 	</div><!-- #content_box -->
 	<footer class="clearfix">
-		<p>Copyright(C) Ryosuke.F All Rights Reserved.</p>
+		<p>Copyright(C) engineer+ All Rights Reserved.</p>
 		<a href="#" id="scroll_top">▲<br />TOP</a>
 	</footer>
 </div><!-- #main_box -->
