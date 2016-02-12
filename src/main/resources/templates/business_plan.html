@@ -95,23 +95,23 @@
 			<div id="page_selectors">
 				
 				<ul class="list-unstyled center-block">
-					<li class="page_selectors_first">
+					<li id="page_selectors_first">
 						<a href="./business_plan?page=1" title="最初のページ" th:unless="${businessPlans.isFirst()}">|&lt;&lt;</a>
 						<span  title="最初のページ" th:if="${businessPlans.isFirst()}">|&lt;&lt;</span>
 					</li>
-					<li class="page_selectors_previous">
-						<a href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.getNumber()})}" th:unless="${businessPlans.isFirst()}">|&lt;</a>
+					<li id="page_selectors_previous">
+						<a href="#" title="前のページ" th:href="@{./business_plan(page=${businessPlans.getNumber()})}" th:unless="${businessPlans.isFirst()}">&lt;&lt;</a>
 						<span  title="前のページ" th:if="${businessPlans.isFirst()}">|&lt;</span>
 					</li>
-					<li class="page_selectors_number" th:each="ps :${pageSelectors}">
+					<li id="page_selectors_number" th:each="ps :${pageSelectors}">
 						<a href="#" th:text="${ps}" th:href="@{./business_plan(page=${ps})}" th:unless="${ps == (businessPlans.getNumber() + 1)}">その他ページ</a>
-						<span class="page_selectors_current" th:text="${ps}" th:if="${ps == (businessPlans.getNumber() + 1)}" title="現在のページ"></span>
+						<span id="page_selectors_current" th:text="${ps}" th:if="${ps == (businessPlans.getNumber() + 1)}" title="現在のページ"></span>
 					</li>
-					<li class="page_selectors_next">
-						<a href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.getNumber() + 2})}" th:unless="${businessPlans.isLast()}">&gt;|</a>
+					<li id="page_selectors_next">
+						<a href="#" title="次ページ" th:href="@{./business_plan(page=${businessPlans.getNumber() + 2})}" th:unless="${businessPlans.isLast()}">&gt;&gt;</a>
 						<span title="次のページ" th:if="${businessPlans.isLast()}">&gt;|</span>
 					</li>
-					<li class="page_selectors_last">
+					<li id="page_selectors_last">
 						<a href="#" title="最後のページ" th:href="@{./business_plan(page=${businessPlans.getTotalPages()})}" th:unless="${businessPlans.isLast()}">&gt;&gt;|</a>
 						<span title="最後のページ" th:if="${businessPlans.isLast()}">&gt;&gt;|</span>
 					</li>
