@@ -2,7 +2,7 @@ package jp.co.engineer_plus.form;
 
 import java.io.Serializable;
 
-public class InquiryForm implements Serializable {
+public class InquiryForm implements Serializable, EqForm {
 
 	/**
 	 * 

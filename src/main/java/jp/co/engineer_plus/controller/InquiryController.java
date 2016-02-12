@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import jp.co.engineer_plus.form.InquiryForm;
+import jp.co.engineer_plus.service.EqServiceException;
 import jp.co.engineer_plus.service.InquiryService;
 
 
@@ -43,11 +44,12 @@ public class InquiryController {
 	}
 	@RequestMapping(value="/inquiry", method=RequestMethod.POST)
 	public String postInquiry(@ModelAttribute("inquiryForm") InquiryForm form, Model model) {
-		boolean result = service.execute(form);
 		Map<String, Boolean> map = new HashMap<>();
-		if (result) {
+		try {
+			service.execute(form);
 			map.put(PropertiesUtil.getMessage("I20000"), true);
-		} else {
+		} catch(EqServiceException e) {
+			e.printStackTrace();
 			map.put(PropertiesUtil.getMessage("W20000"), false);
 		}
 		model.addAttribute("resultMap", map.entrySet());

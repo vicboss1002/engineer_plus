@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -14,29 +16,30 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="ep_business_plan")
-public class EpBusinessPlan implements Serializable {
+public class EpBusinessPlan implements Serializable, EqEntity {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="busines_plan_sid_seq")
+	@SequenceGenerator(name="busines_plan_sid_seq", sequenceName="busines_plan_sid_seq", allocationSize=1)
 	private Integer sid;
-
+	@Column
+	private String name;
+	@Column
 	private String title;
-	private String detail;
-	@Column(name="creted_date")
+	@Column
+	private String content;
+	@Column(name="created_date")
 	private Date createdDate;
 	@Column(name="updated_date")
-	private Date updatedDate;
+	private Date updatedDate = new Date();
 	@Column(name="created_user_id")
 	private Integer createdUserId;
 	@Column(name="updated_user_id")
 	private Integer updatedUserId;
-	public EpBusinessPlan() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 	public Integer getSid() {
 		return sid;
 	}
@@ -48,12 +51,6 @@ public class EpBusinessPlan implements Serializable {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getDetail() {
-		return detail;
-	}
-	public void setDetail(String detail) {
-		this.detail = detail;
 	}
 	public Date getCreatedDate() {
 		return createdDate;
@@ -78,5 +75,17 @@ public class EpBusinessPlan implements Serializable {
 	}
 	public void setUpdatedUserId(Integer updatedUserId) {
 		this.updatedUserId = updatedUserId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 }
