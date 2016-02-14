@@ -102,8 +102,8 @@ footer {
 
 .user_info {
 	position: fixed;
-	top: 5%;
-	right: 2%;
+	top: 1%;
+	right: 1%;
 }
 .user_info span {
 	padding-right: 0.5em;
