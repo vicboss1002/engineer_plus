@@ -14,6 +14,7 @@ import jp.co.engineer_plus.form.BusinessPlanForm;
 import jp.co.engineer_plus.repositories.EqBusinessPlanRepository;
 import jp.co.engineer_plus.service.BusinesPlanService;
 import jp.co.engineer_plus.service.EqServiceException;
+import jp.co.engineer_plus.utility.JavaBeansUtil;
 
 @Service
 public class BusinesPlanServiceImpl implements BusinesPlanService {
@@ -24,10 +25,8 @@ public class BusinesPlanServiceImpl implements BusinesPlanService {
 	@Transactional
 	public void execute(BusinessPlanForm form) throws EqServiceException {
 		try {
-			EpBusinessPlan entity = new EpBusinessPlan();
-			entity.setName(form.getName());
-			entity.setTitle(form.getTitle());
-			entity.setContent(form.getContent());
+			EpBusinessPlan entity = new EpBusinessPlan();	
+			JavaBeansUtil.exchange(form, entity);
 			entity.setCreatedDate(new Date());
 			repository.save(entity);
 		} catch(RuntimeException e) {

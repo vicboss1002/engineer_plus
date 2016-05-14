@@ -10,6 +10,7 @@ import jp.co.engineer_plus.form.InquiryForm;
 import jp.co.engineer_plus.repositories.EqInquiryRepository;
 import jp.co.engineer_plus.service.EqServiceException;
 import jp.co.engineer_plus.service.InquiryService;
+import jp.co.engineer_plus.utility.JavaBeansUtil;
 
 @Service
 public class InquiryServiceImpl implements InquiryService {
@@ -21,10 +22,7 @@ public class InquiryServiceImpl implements InquiryService {
 	public void execute(InquiryForm form) throws EqServiceException {
 		try {
 			EqInquiry entity = new EqInquiry();
-			entity.setName(form.getName());
-			entity.setMailAddress(form.getMailAddress());
-			entity.setTitle(form.getTitle());
-			entity.setContent(form.getContent());
+			JavaBeansUtil.exchange(form, entity);
 			repository.save(entity);
 		} catch(RuntimeException e) {
 			throw new EqServiceException(e);
