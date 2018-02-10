@@ -1,0 +1,1 @@
+web: java -jar target/engineer_plus.jar
