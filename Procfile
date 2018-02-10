@@ -1,1 +1,1 @@
-web: java -jar engineer_plus-0.0.1-SNAPSHOT.war
+web: java -jar target/engineer_plus-0.0.1-SNAPSHOT.war
